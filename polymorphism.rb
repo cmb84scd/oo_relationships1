@@ -3,8 +3,8 @@ class ScrambledDiary
     @contents = contents
   end
 
-  def read(contents)
-    @contents = contents.scramble
+  def read(content)
+    @contents = content.scramble
   end
 end
 
