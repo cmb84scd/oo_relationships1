@@ -1,26 +1,26 @@
 class Authentication
-  attr_reader :password
   def initialize(password)
     @password = password
   end
 
   def authenticate(candidate_password)
-    return true if @password == candidate_password.password
+    return true if candidate_password == @password
     false
   end
 end
 
 class User
-  attr_accessor :name, :bio, :age, :password
-  def initialize(name, bio, age, password = Authentication.new)
+  attr_reader :name, :bio, :age, :password, :auth
+  def initialize(name, bio, age, password)
     @name = name
     @bio = bio
     @age = age
     @password = password
+    @auth = Authentication.new(password)
   end
 
-  def authenticate
-    @password.authenticate
+  def authenticate(candidate_password)
+    @auth.authenticate(candidate_password)
   end
 
   def profile
